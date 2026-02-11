@@ -1,0 +1,14 @@
+{
+    "build":[{
+        "src":"studentproject/wsgi.py",
+        "use":"@vercel/pythom",
+        "config":{"maxLambdaSize":"15mb","runtime":"pyhton3.11.3"}
+    }],
+    "routes":[
+        {
+            "src":"/(.*)",
+            "dest":"studentproject/wsgi.py"
+        }
+    ]
+
+}
