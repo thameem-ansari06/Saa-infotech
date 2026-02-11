@@ -1,0 +1,401 @@
+{% extends 'dummy.html' %}
+
+{% load static %}
+
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Training & Placement · IT Institute</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap (light grid & utilities) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- ===== PROFESSIONAL, CLEAN STYLE — MATCHES ABOUT US ===== -->
+    <style>
+        /* ---------- global foundation · same as about page ---------- */
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+        }
+
+        /* consistent section spacing */
+        .section {
+            padding: 5rem 0;
+        }
+        .section-sm {
+            padding: 3rem 0;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #0a2540;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+        .section-sub {
+            color: #5b6c7e;
+            max-width: 720px;
+            margin-bottom: 2rem;
+        }
+
+        /* quiet background variants */
+        .bg-soft {
+            background-color: #f8fafc;
+        }
+        .bg-subtle {
+            background-color: #f9fcff;
+        }
+
+        /* ---------- TRAINING APPROACH — CARDS (clean, minimal, trustworthy) ---------- */
+        .training-card {
+            background: white;
+            padding: 2.2rem 1.2rem;
+            border-radius: 1.5rem;
+            text-align: center;
+            border: 1px solid #f1f4f9;
+            box-shadow: 0 5px 20px -8px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .training-card:hover {
+            border-color: #cbd5e1;
+            background: #ffffff;
+            box-shadow: 0 12px 24px -12px rgba(0,0,0,0.06);
+            transform: translateY(-4px);
+        }
+
+        .training-emoji {
+            font-size: 2.8rem;
+            margin-bottom: 0.75rem;
+            color: #2563eb;  /* trustworthy blue accent */
+        }
+
+        .training-card h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #0a2540;
+            margin-bottom: 0.5rem;
+        }
+
+        .training-card p {
+            color: #52718e;
+            font-size: 0.95rem;
+            margin-bottom: 0;
+            max-width: 220px;
+        }
+
+        /* ---------- METHOD PILLS (subtle, same as about page) ---------- */
+        .method-pill {
+            background: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 60px;
+            font-weight: 500;
+            color: #1e293b;
+            border: 1px solid #e2e8f0;
+            display: inline-block;
+            margin: 0.4rem;
+            font-size: 1.05rem;
+            transition: 0.1s ease;
+        }
+        .method-pill:hover {
+            border-color: #2563eb;
+            background: #f8fafc;
+        }
+
+        /* ---------- PLACEMENT — ELEGANT, HIGH-IMPACT (no heavy gradient) ---------- */
+        .placement-showcase {
+            background: white;
+            padding: 3rem 2.5rem;
+            border-radius: 2.5rem;
+            border: 1px solid #f1f4f9;
+            box-shadow: 0 12px 30px -12px rgba(0,0,0,0.04);
+            transition: 0.2s;
+        }
+        .placement-showcase:hover {
+            border-color: #dbeafe;
+            box-shadow: 0 20px 35px -16px rgba(37,99,235,0.08);
+        }
+
+        .placement-stat {
+            display: inline-block;
+            background: #f0f7ff;
+            color: #2563eb;
+            font-weight: 700;
+            padding: 0.3rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid #dbeafe;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .placement-title {
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #0a2540;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+        }
+
+        .placement-desc {
+            font-size: 1.2rem;
+            color: #475569;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+
+        /* stats inside placement — minimal, numeric */
+        .mini-stat {
+            background: #f8fafc;
+            padding: 1rem 1.8rem;
+            border-radius: 1.2rem;
+            border: 1px solid #edf2f7;
+        }
+        .mini-stat h5 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2563eb;
+            margin-bottom: 0.1rem;
+            line-height: 1;
+        }
+        .mini-stat p {
+            color: #52718e;
+            margin-bottom: 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* ---------- SUPPORT CARD (career support — clean, airy) ---------- */
+        .support-card {
+            background: white;
+            padding: 1.8rem;
+            border-radius: 1.5rem;
+            border: 1px solid #f1f4f9;
+            box-shadow: 0 5px 15px -8px rgba(0,0,0,0.02);
+            height: 100%;
+            transition: 0.15s;
+        }
+        .support-card:hover {
+            border-color: #cbd5e1;
+            background: #ffffff;
+        }
+        .support-card span {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+        .support-card h5 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.4rem;
+        }
+        .support-card p {
+            color: #5b6c7e;
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* ---------- FOOTER — exactly as about page (minimal, light) ---------- */
+        footer {
+            background: #ffffff;
+            padding: 2rem 0;
+            text-align: center;
+            color: #5f6c80;
+            border-top: 1px solid #ecf1f7;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+
+        /* responsive */
+        @media (max-width: 768px) {
+            .section { padding: 3.5rem 0; }
+            .placement-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== TRAINING APPROACH — CLEAN, CONFIDENT ========= -->
+    <section class="section bg-soft">
+        <div class="container">
+            <!-- section header · same quiet tone -->
+            <div class="text-center mb-5">
+                <h2 class="section-title">Training approach</h2>
+                <p class="section-sub mx-auto" style="font-size: 1.2rem;">
+                    Structured, project-first learning — built for engineering excellence.
+                </p>
+            </div>
+
+            <!-- training cards · 4-column professional -->
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="training-card">
+                        <div class="training-emoji">📌</div>
+                        <h4>Practical core</h4>
+                        <p>70% hands-on, 30% concepts · learn by building</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="training-card">
+                        <div class="training-emoji">💻</div>
+                        <h4>Live coding</h4>
+                        <p>Pair programming · industry workflows</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="training-card">
+                        <div class="training-emoji">🚀</div>
+                        <h4>Real‑time projects</h4>
+                        <p>2 portfolio-ready applications</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="training-card">
+                        <div class="training-emoji">🎯</div>
+                        <h4>Interview prep</h4>
+                        <p>Mock interviews · hiring manager rounds</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- methodology pills — exactly as about page style -->
+            <div class="d-flex flex-wrap justify-content-center mt-5 pt-3">
+                <span class="method-pill">🧪 capstone projects</span>
+                <span class="method-pill">📁 portfolio review</span>
+                <span class="method-pill">🤝 industry mentorship</span>
+                <span class="method-pill">⚡ code reviews</span>
+                <span class="method-pill">📊 agile simulation</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PLACEMENT & CAREER — SOPHISTICATED, TRUST MARK ========= -->
+    <section class="section">
+        <div class="container">
+            <div class="placement-showcase text-center">
+                <!-- subtle badge -->
+                <span class="placement-stat">🎓 placement excellence · 2026</span>
+
+                <h2 class="placement-title">
+                    Career acceleration<br class="d-none d-md-block">
+                    <span style="color: #2563eb;">& placement support</span>
+                </h2>
+
+                <p class="placement-desc">
+                    Complete assistance — resume refinement, mock interviews,
+                    technical & HR rounds, and direct referrals.
+                    We stay with you until you land the right role.
+                </p>
+
+                <!-- clean mini stats · 3 columns -->
+                <div class="row g-4 mt-5 justify-content-center">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="mini-stat">
+                            <h5>94%</h5>
+                            <p>placement rate</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="mini-stat">
+                            <h5>120+</h5>
+                            <p>hiring partners</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="mini-stat">
+                            <h5>8.2 LPA</h5>
+                            <p>average package</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CAREER SUPPORT — DETAILED, CONFIDENT ========= -->
+    <section class="section bg-subtle">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">End‑to‑end career support</h2>
+                <p class="section-sub mx-auto">Structured guidance from day one to offer letter.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="support-card">
+                        <span>📄</span>
+                        <h5>Resume & LinkedIn</h5>
+                        <p>1:1 session to craft a compelling narrative, ATS‑friendly templates.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="support-card">
+                        <span>🎤</span>
+                        <h5>Mock interviews</h5>
+                        <p>Technical + HR panels with real‑time feedback and recordings.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="support-card">
+                        <span>🔗</span>
+                        <h5>Referral network</h5>
+                        <p>Direct connects to 120+ partner companies · alumni referrals.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="support-card">
+                        <span>📌</span>
+                        <h5>Hackathon prep</h5>
+                        <p>Build competition‑ready solutions, whiteboard practice.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="support-card">
+                        <span>💼</span>
+                        <h5>Salary negotiation</h5>
+                        <p>Market data & scripts to help you counter confidently.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="support-card">
+                        <span>🔄</span>
+                        <h5>Lifetime upgrade</h5>
+                        <p>Alumni access to new courses · always stay current.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER — EXACTLY AS ABOUT PAGE, MINIMAL ========= -->
+    <footer>
+        © 2026 IT Training Institute · all rights reserved
+        <span style="color: #b1c3d5; padding: 0 0.75rem;">|</span>
+        hello@itinstitute.dev
+    </footer>
+
+    <!-- Bootstrap bundle (light) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+{% endblock %}

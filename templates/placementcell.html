@@ -1,0 +1,439 @@
+{% extends 'dummy.html' %}
+
+{% block title %}Placement Cell{% endblock %}
+
+{% block content %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>Placements & Career Support · Professional</title>
+
+    <!-- Bootstrap 5 CDN (light version) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- ===== INTERNAL CSS ===== -->
+    <style>
+        /* ----- GLOBAL RESET / PROFESSIONAL TYPOGRAPHY ----- */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f6f9fc;
+            color: #1a2b3e;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* smooth fonts, subtle transitions */
+        * {
+            transition: background 0.2s ease, transform 0.25s cubic-bezier(0.1, 0.7, 0.3, 1), box-shadow 0.3s;
+        }
+
+        .container {
+            max-width: 1280px;
+        }
+
+        /* ----- header refined – subtle animation, gradient soft ----- */
+        .page-header {
+            background: linear-gradient(105deg, #0b2e4f 0%, #1a4a6b 100%);
+            color: white;
+            padding: 5rem 0 4.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: "";
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .page-header h1 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            font-size: 2.8rem;
+            animation: fadeSlideUp 0.9s ease-out;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            font-weight: 350;
+            opacity: 0.92;
+            animation: fadeSlideUp 0.9s 0.1s ease-out both;
+        }
+
+        @keyframes fadeSlideUp {
+            0% { opacity: 0; transform: translateY(12px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* section titles — clean, no over decoration */
+        .section-title {
+            font-weight: 600;
+            font-size: 2.1rem;
+            color: #0a3144;
+            letter-spacing: -0.01em;
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(90deg, #0a66c2, #3b8fc2);
+            border-radius: 2px;
+            margin: 0.75rem auto 0;
+            transition: width 0.3s;
+        }
+        .section-title:hover:after {
+            width: 100px;
+        }
+
+        /* ----- process cards – minimal elevation, subtle lift ----- */
+        .process-card {
+            background: white;
+            padding: 2rem 1.8rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0,30,50,0.06);
+            height: 100%;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.5);
+            backdrop-filter: blur(2px);
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+        .process-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px rgba(18, 52, 77, 0.1);
+            border-color: #cde1f0;
+        }
+        .process-card h5 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #0e4b6b;
+            font-size: 1.5rem;
+        }
+
+        /* company logos – refined, no heavy shadows */
+        .partner-logo {
+            background: white;
+            padding: 1.5rem 0.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            text-align: center;
+            font-weight: 550;
+            font-size: 1.2rem;
+            color: #1e3a5f;
+            border: 1px solid #eef5fa;
+            transition: all 0.25s;
+            letter-spacing: 0.5px;
+        }
+        .partner-logo:hover {
+            background: #f1f9ff;
+            border-color: #a6c8e4;
+            box-shadow: 0 12px 18px -8px rgba(0,80,120,0.12);
+            transform: scale(1.01);
+        }
+
+        /* success stories – clean and professional */
+        .story-card {
+            background: white;
+            padding: 1.8rem 1.8rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 18px rgba(0,47,75,0.04);
+            height: 100%;
+            border-left: 5px solid #2c7da0;
+            transition: all 0.25s;
+        }
+        .story-card:hover {
+            box-shadow: 0 16px 28px rgba(33, 98, 133, 0.1);
+            border-left-width: 8px;
+            border-left-color: #0a66c2;
+        }
+        .story-card h6 {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #0b4b6b;
+            margin-bottom: 0.6rem;
+        }
+
+        /* salary section – professional deep blue */
+        .salary-section {
+            background: linear-gradient(105deg, #0a3144, #1e4e63);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .salary-section h2 {
+            font-weight: 600;
+            font-size: 2.3rem;
+            letter-spacing: -0.01em;
+        }
+        .salary-section p {
+            font-size: 1.5rem;
+            font-weight: 350;
+            background: rgba(255,255,255,0.06);
+            display: inline-block;
+            padding: 0.7rem 2rem;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+            margin-top: 0.8rem;
+        }
+
+        /* career support – list as elegant tags */
+        .support-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem 1.5rem;
+            max-width: 800px;
+            margin: 2rem auto 0;
+        }
+        .support-tags span {
+            background: white;
+            padding: 0.6rem 1.7rem;
+            border-radius: 40px;
+            font-weight: 500;
+            color: #114e67;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            border: 1px solid #ddebf2;
+            font-size: 1.05rem;
+            transition: background 0.2s, border 0.2s, transform 0.15s;
+        }
+        .support-tags span:hover {
+            background: #e5f0f7;
+            border-color: #1f7f9c;
+            transform: translateY(-2px);
+        }
+
+        /* CTA – clean, sophisticated, with subtle pulse */
+        .cta-professional {
+            background: #0b2d47;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            background-image: radial-gradient(circle at 10% 30%, rgba(255,255,255,0.04) 0%, transparent 25%);
+        }
+        .cta-professional h2 {
+            font-weight: 600;
+            font-size: 2.3rem;
+        }
+        .cta-professional .btn {
+            padding: 0.9rem 2.8rem;
+            border-radius: 40px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            background: #1e88e5;
+            border: none;
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.2);
+            transition: all 0.25s;
+            margin-top: 1rem;
+        }
+        .cta-professional .btn:hover {
+            background: #1565c0;
+            transform: scale(1.03);
+            box-shadow: 0 18px 28px -8px #020c14;
+        }
+
+        /* footer minimal */
+        .footer-minimal {
+            background: #0a1c28;
+            color: #b0cbd9;
+            text-align: center;
+            padding: 1.8rem;
+            font-size: 0.95rem;
+        }
+
+        /* mobile responsiveness – fine details */
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 2.2rem; }
+            .section-title { font-size: 1.9rem; }
+            .salary-section h2 { font-size: 1.9rem; }
+            .salary-section p { font-size: 1.2rem; padding: 0.5rem 1rem; }
+            .process-card { padding: 1.8rem 1rem; }
+        }
+        @media (max-width: 576px) {
+            .page-header { padding: 3.5rem 0; }
+            .page-header h1 { font-size: 1.9rem; }
+            .container { padding-left: 1.5rem; padding-right: 1.5rem; }
+            .support-tags span { padding: 0.4rem 1.2rem; font-size: 0.95rem; }
+            .cta-professional h2 { font-size: 1.8rem; }
+        }
+
+        /* additional refined spacing */
+        .section {
+            padding: 5rem 0;
+        }
+        .bg-soft-light {
+            background-color: #f2f7fb;
+        }
+        hr {
+            opacity: 0.2;
+        }
+        a, button {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== HEADER – elevated, refined entrance ========== -->
+<section class="page-header">
+    <div class="container">
+        <h1>Placements & Career Support</h1>
+        <p>We don’t just train — we accelerate careers</p>
+    </div>
+</section>
+
+<!-- ========== PLACEMENT PROCESS – professional cards, hover animation ========== -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title text-center">Placement process</h2>
+        <div class="row g-4 mt-2">
+            <div class="col-md-4">
+                <div class="process-card">
+                    <h5>Skill training</h5>
+                    <p class="text-secondary">Industry-aligned curriculum, capstone projects & real-world case studies.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="process-card">
+                    <h5>Interview prep</h5>
+                    <p class="text-secondary">1:1 mock interviews, aptitude, HR rounds & coding challenges.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="process-card">
+                    <h5>Placement assist</h5>
+                    <p class="text-secondary">Direct referrals, alumni connects, and dedicated career coaching.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== PARTNER COMPANIES – with clean, subtle interaction ========== -->
+<section class="section bg-soft-light">
+    <div class="container">
+        <h2 class="section-title text-center">Hiring partners</h2>
+        <div class="row g-4 mt-3 justify-content-center">
+            <div class="col-md-3 col-6">
+                <div class="partner-logo">TCS</div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="partner-logo">Infosys</div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="partner-logo">Wipro</div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="partner-logo">Zoho</div>
+            </div>
+            <!-- additional logos – balanced -->
+            <div class="col-md-3 col-6">
+                <div class="partner-logo">Accenture</div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="partner-logo">Amazon</div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="partner-logo">Microsoft</div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="partner-logo">Deloitte</div>
+            </div>
+        </div>
+        <p class="text-center text-muted mt-5 mb-0" style="font-size:0.95rem;">+ 50 more product & service based firms</p>
+    </div>
+</section>
+
+<!-- ========== SUCCESS STORIES – professional with border accent ========== -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title text-center">Success stories</h2>
+        <div class="row g-4 mt-3">
+            <div class="col-md-4">
+                <div class="story-card">
+                    <h6>Arun — Python developer</h6>
+                    <p class="text-secondary mb-0">“Placed in leading fintech with 7.2 LPA. Full stack mastery and mock interviews were key.”</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="story-card">
+                    <h6>Priya — Data analyst</h6>
+                    <p class="text-secondary mb-0">“Career transitioned from non-tech to analytics; today at analytics firm, 6.8 LPA.”</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="story-card">
+                    <h6>Karthik — QA engineer</h6>
+                    <p class="text-secondary mb-0">“Automation specialist at MNC, 8.1 LPA. Placement team supported till final offer.”</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SALARY PACKAGES – elegant, confident ========== -->
+<section class="salary-section">
+    <div class="container">
+        <h2>Salary benchmarks</h2>
+        <p>Freshers: ₹3 – ₹6 LPA &nbsp;·&nbsp; Experienced: ₹6 – ₹15 LPA</p>
+        <div style="font-size:1rem; opacity:0.85; margin-top:1.2rem;">average package 5.8 LPA · top offers 22 LPA</div>
+    </div>
+</section>
+
+<!-- ========== CAREER SUPPORT – tag list, refined ========== -->
+<section class="section bg-white">
+    <div class="container text-center">
+        <h2 class="section-title">Career support</h2>
+        <div class="support-tags">
+            <span>Resume building</span>
+            <span>Mock interviews</span>
+            <span>HR & behavioral</span>
+            <span>Technical prep</span>
+            <span>Job referrals</span>
+            <span>LinkedIn profile</span>
+            <span>Portfolio review</span>
+            <span>Salary negotiation</span>
+        </div>
+        <p class="text-muted mt-5" style="max-width: 700px; margin-left: auto; margin-right: auto;">Dedicated career coach from day one – lifelong placement assistance.</p>
+    </div>
+</section>
+
+<!-- ========== CALL TO ACTION – professional, mobile-ready ========== -->
+<section class="cta-professional">
+    <div class="container">
+        <h2>Ready to build your career?</h2>
+        <p class="lead" style="opacity: 0.9; font-size: 1.3rem;">Get industry-ready with full placement support</p>
+        <a href="#" class="btn btn-primary btn-lg">Enroll now</a>
+        <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.7;">📅 Limited seats · next batch starts soon</p>
+    </div>
+</section>
+
+<!-- ========== FOOTER – minimal ========== -->
+<footer class="footer-minimal">
+    <div class="container">
+        <p style="margin-bottom: 0.2rem;">© 2025 Centre for Professional Development. All rights reserved.</p>
+        <p style="margin-bottom: 0; font-size: 0.85rem;">Career support · placements · excellence</p>
+    </div>
+</footer>
+
+<!-- Bootstrap JS (optional for interactions) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- subtle extra: adds no visual weight, but ensures smoothness -->
+</body>
+</html>
+
+
+{% endblock %}
